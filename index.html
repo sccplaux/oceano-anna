@@ -46,16 +46,18 @@
     .galeria {
       margin: 5vh auto;
       width: 90%;
-      max-width: 1200px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      max-width: 1400px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 20px;
       z-index: 1;
     }
 
     .galeria img {
-      width: 100%;
-      height: 250px;
+      height: 200px;
+      width: auto;
+      max-width: 100%;
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.6);
@@ -81,33 +83,41 @@
       
       .galeria {
         margin: 10vh auto;
-        grid-template-columns: repeat(2, 1fr); /* Duas colunas lado a lado */
+        flex-wrap: nowrap; /* Impede a quebra de linha */
+        overflow-x: auto; /* Adiciona scroll horizontal se necessário */
+        padding-bottom: 20px; /* Espaço para o scroll */
       }
       
-      /* Para 5 imagens, fazemos a última ocupar duas colunas */
-      .galeria img:nth-child(5) {
-        grid-column: span 2;
-        max-width: 50%;
-        justify-self: center;
+      .galeria img {
+        height: 250px;
+        flex-shrink: 0; /* Impede que as imagens reduzam demais */
       }
     }
 
     /* Ajustes para telas médias */
     @media (max-width: 1023px) and (min-width: 768px) {
       .galeria {
-        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
     /* Ajustes para telas pequenas */
     @media (max-width: 767px) {
       .galeria {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
       }
       
-      .galeria img:nth-child(5) {
-        grid-column: span 1;
-        max-width: 100%;
+      .galeria img {
+        height: 180px;
+      }
+    }
+
+    /* Ajuste para telas muito pequenas */
+    @media (max-width: 480px) {
+      .galeria {
+        grid-template-columns: 1fr;
       }
     }
   </style>
