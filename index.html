@@ -10,6 +10,10 @@
       padding: 0;
       overflow-x: hidden;
       font-family: 'Lucida Bright', ui-sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .background-video {
@@ -23,16 +27,15 @@
     }
 
     .mensagem {
-      position: absolute;
-      top: 8vh;
-      width: 100%;
+      margin-top: 5vh;
+      width: 90%;
       text-align: center;
-      font-size: 2.5em;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       color: #eeeee4;
       font-weight: bold;
       animation: flutuar 6s ease-in-out infinite;
       text-shadow: 4px 4px 5px rgba(0,0,0,0.7);
-      padding: 0 10px;
+      z-index: 1;
     }
 
     @keyframes flutuar {
@@ -41,20 +44,18 @@
     }
 
     .galeria {
-      position: absolute;
-      top: 30vh;
+      margin: 5vh auto;
       display: flex;
       justify-content: center;
-      width: 100%;
+      width: 90%;
       gap: 20px;
-      padding: 0 20px;
-      box-sizing: border-box;
       flex-wrap: wrap;
+      z-index: 1;
     }
 
     .galeria img {
-      max-height: 300px;
-      width: auto;
+      max-height: 30vh;
+      max-width: 100%;
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.6);
@@ -66,50 +67,45 @@
     }
 
     .musica {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      margin: 20px auto;
       width: 90%;
       max-width: 500px;
+      z-index: 1;
     }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
+    /* Layout para telas maiores */
+    @media (min-width: 1024px) {
       .mensagem {
-        font-size: 1.8em;
-        top: 6vh;
+        margin-top: 8vh;
       }
-
+      
       .galeria {
-        top: 20vh;
-        gap: 10px;
-        flex-direction: column;
-        align-items: center;
+        margin: 10vh auto;
       }
-
+      
       .galeria img {
-        max-height: 200px;
-        width: 90%;
+        max-height: 40vh;
       }
+    }
 
-      .musica iframe {
-        height: 200px;
+    /* Ajustes para telas pequenas */
+    @media (max-width: 768px) {
+      .galeria {
+        gap: 15px;
+      }
+      
+      .galeria img {
+        max-height: 25vh;
       }
     }
 
     @media (max-width: 480px) {
-      .mensagem {
-        font-size: 1.5em;
-        top: 5vh;
+      .galeria {
+        gap: 10px;
       }
-
+      
       .galeria img {
-        max-height: 180px;
-      }
-
-      .musica iframe {
-        height: 180px;
+        max-height: 20vh;
       }
     }
   </style>
