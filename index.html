@@ -45,17 +45,17 @@
 
     .galeria {
       margin: 5vh auto;
-      display: flex;
-      justify-content: center;
       width: 90%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
-      flex-wrap: wrap;
       z-index: 1;
     }
 
     .galeria img {
-      max-height: 30vh;
-      max-width: 100%;
+      width: 100%;
+      height: 250px;
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.6);
@@ -81,38 +81,39 @@
       
       .galeria {
         margin: 10vh auto;
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas lado a lado */
       }
       
-      .galeria img {
-        max-height: 40vh;
+      /* Para 5 imagens, fazemos a última ocupar duas colunas */
+      .galeria img:nth-child(5) {
+        grid-column: span 2;
+        max-width: 50%;
+        justify-self: center;
+      }
+    }
+
+    /* Ajustes para telas médias */
+    @media (max-width: 1023px) and (min-width: 768px) {
+      .galeria {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     /* Ajustes para telas pequenas */
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       .galeria {
-        gap: 15px;
+        grid-template-columns: 1fr;
       }
       
-      .galeria img {
-        max-height: 25vh;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .galeria {
-        gap: 10px;
-      }
-      
-      .galeria img {
-        max-height: 20vh;
+      .galeria img:nth-child(5) {
+        grid-column: span 1;
+        max-width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Vídeo de fundo (substitua o link abaixo pelo seu link do Catbox) -->
   <video class="background-video" autoplay loop muted>
     <source src="https://files.catbox.moe/q10hxp.mp4" type="video/mp4">
     Seu navegador não suporta vídeo em HTML5.
