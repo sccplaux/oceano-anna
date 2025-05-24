@@ -46,10 +46,11 @@
     .galeria {
       margin: 5vh auto;
       width: 90%;
-      max-width: 1400px;
+      max-width: 1200px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
       gap: 20px;
       z-index: 1;
     }
@@ -75,7 +76,7 @@
       z-index: 1;
     }
 
-    /* Layout para telas maiores */
+    /* Layout para telas maiores (computador) */
     @media (min-width: 1024px) {
       .mensagem {
         margin-top: 8vh;
@@ -83,41 +84,41 @@
       
       .galeria {
         margin: 10vh auto;
-        flex-wrap: nowrap; /* Impede a quebra de linha */
-        overflow-x: auto; /* Adiciona scroll horizontal se necessário */
-        padding-bottom: 20px; /* Espaço para o scroll */
+        flex-wrap: nowrap; /* Todas imagens em uma linha */
+        justify-content: center; /* Centraliza horizontalmente */
       }
       
       .galeria img {
         height: 250px;
-        flex-shrink: 0; /* Impede que as imagens reduzam demais */
       }
     }
 
-    /* Ajustes para telas médias */
+    /* Ajustes para telas médias (tablet) */
     @media (max-width: 1023px) and (min-width: 768px) {
       .galeria {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .galeria img {
+        height: 200px;
+        flex: 0 0 calc(33.333% - 20px); /* 3 imagens por linha */
       }
     }
 
-    /* Ajustes para telas pequenas */
+    /* Ajustes para telas pequenas (celular) */
     @media (max-width: 767px) {
       .galeria {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        flex-direction: column; /* Coluna vertical */
+        align-items: center; /* Centraliza na vertical */
+        gap: 15px;
       }
       
       .galeria img {
         height: 180px;
-      }
-    }
-
-    /* Ajuste para telas muito pequenas */
-    @media (max-width: 480px) {
-      .galeria {
-        grid-template-columns: 1fr;
+        width: 90%; /* Largura maior para melhor visualização */
+        max-width: 300px; /* Limite máximo de largura */
       }
     }
   </style>
